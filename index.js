@@ -26,7 +26,7 @@ import {
   deleteCategory,
   // deleteMessage,
   // getMessages,
-  // getCountsForDashboard,
+  getCountsForDashboard,
 } from "./services/database.js";
 // const { intializeFirebaseApp } = require("./services/firebase");
 
@@ -264,10 +264,20 @@ app.post("/api/deleteCategory", async (req, res) => {
 //   res.status(503).send();
 // });
 
-// app.post("/api/getCountsForDashboard", async (req, res) => {
-//   const counts = await getCountsForDashboard();
-//   res.status(200).send(counts);
-// });
+app.post("/api/getCountsForDashboard", async (req, res) => {
+  try {
+    const result = await getCountsForDashboard();
+    return res.status(200).send(result);
+  } catch (err) {
+    return res
+      .status(500)
+      .json({
+        success: false,
+        message: err.message,
+        error: err
+      });
+  }
+});
 
 app.use((error, req, res, next) => {
   console.log(error);

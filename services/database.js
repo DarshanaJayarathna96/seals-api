@@ -289,29 +289,12 @@ export const deleteCategory = async (category_id) => {
 //   return await getMessageData;
 // };
 
-// exports.getCountsForDashboard = async () => {
-//   let getCounts = new Promise((resolve) => {
-//     let counts = {};
-//     conn.query(
-//       `SELECT COUNT(product_id) as count FROM product`,
-//       (err, result) => {
-//         if (err) {
-//           throw err;
-//         }
-//         counts = { ...counts, products: result[0].count };
-//         conn.query(
-//           `SELECT COUNT(category_id) as count FROM categories`,
-//           (err, result) => {
-//             if (err) {
-//               throw err;
-//             }
-//             counts = { ...counts, categories: result[0].count };
-//             resolve(counts);
-//           }
-//         );
-//       }
-//     );
-//   });
-
-//   return await getCounts;
-// };
+export const getCountsForDashboard = async () => {
+  try {
+    const products = await Product.find().countDocuments();
+    const categories = await Category.find().countDocuments();
+    return { products, categories };
+  } catch (err) {
+    throw err;
+  }
+};

@@ -14,6 +14,10 @@ const ProductSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    productOrder: {
+      type: Number,
+      required: true,
+    },
     meta: {
       type: Object,
       required: true,

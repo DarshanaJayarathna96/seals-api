@@ -10,6 +10,10 @@ const CategorySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    specificationCategory: {
+      type: String,
+      required: true,
+    },
     meta: {
       type: Object,
       required: true,

@@ -99,7 +99,7 @@ export const addCategory = async (categoryData) => {
 
 export const getProducts = async (category_id) => {
   try {
-      return await Product.find();
+      return await Product.find().sort({productOrder: 1});;
   } catch (err) {
     throw err;
   }
